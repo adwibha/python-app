@@ -5,8 +5,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    # Initialize SpeedTest
+    # Initialize SpeedTest and specify a server
     speed = pyspeedtest.SpeedTest()
+    
+    # Attempt to manually choose a server
+    speed.get_best_server()  # Choose the best server based on ping
 
     # Perform download, upload, and ping tests
     download_speed = speed.download() / 1_000_000  # Convert to Mbps
