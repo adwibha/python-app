@@ -84,7 +84,7 @@ docker run -p 80:80 internet-speed-test
 Open your browser and navigate to:
 
 ```plaintext
-http://<your-server-ip>
+http://<your-server-ip>:80
 ```
 
 > **Note:** If running on AWS EC2 or another cloud service, ensure port 80 is open in the security group.
@@ -188,6 +188,8 @@ If you need to stop the container later, you can use the `docker stop` command f
 ```bash
 docker stop <container-id-or-name>
 ```
+
+<img width="1385" alt="Screenshot 2025-01-16 at 12 42 36 PM" src="https://github.com/user-attachments/assets/f972d721-262b-4964-892a-195b497c3f06" />
 
 6. Ensure your security group allows inbound traffic on port 80.
 
