@@ -1,20 +1,19 @@
 from flask import Flask, render_template
-import pyspeedtest
+import speedtest
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    # Initialize SpeedTest and specify a server
-    speed = pyspeedtest.SpeedTest()
-    
-    # Attempt to manually choose a server
-    speed.get_best_server()  # Choose the best server based on ping
+    st = speedtest.Speedtest()
+
+    # Get the best server
+    st.get_best_server()
 
     # Perform download, upload, and ping tests
-    download_speed = speed.download() / 1_000_000  # Convert to Mbps
-    upload_speed = speed.upload() / 1_000_000      # Convert to Mbps
-    ping = speed.ping()
+    download_speed = st.download() / 1_000_000  # Convert to Mbps
+    upload_speed = st.upload() / 1_000_000      # Convert to Mbps
+    ping = st.results.ping
 
     # Render the results in HTML
     return render_template('index.html', download_speed=download_speed, upload_speed=upload_speed, ping=ping)
